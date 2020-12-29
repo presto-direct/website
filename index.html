@@ -18,11 +18,28 @@
             <h3>A big changer to the ecommerce is coming...</h3>
             <div class="input-group has-icon">
                 <input type="text" name="email" placeholder="Email">
-                <button class="btn red">Subscript</button>
+                <button class="btn red">Subscribe</button>
             </div>
             <p>Leave your email here, we will notify you when it’s ready.</p>
         </div>
     </div>
 </main>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    btn.onclick = function () {
+        fetch("https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxx", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                msgtype: "text",
+                text: {
+                    content: document.getElementsByName("email")[0].value
+                }
+            })
+        });
+    }
+</script>
 </body>
 </html>
