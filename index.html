@@ -11,7 +11,7 @@
 <body>
 <main>
     <div class="board">
-        <div class="inner-wrap">
+        <form class="inner-wrap">
             <p>
                 <img src="rabbit.png" alt="Rabbit"/>
             </p>
@@ -21,24 +21,31 @@
                 <button class="btn red">Subscribe</button>
             </div>
             <p>Leave your email here, we will notify you when it’s ready.</p>
-        </div>
+        </form>
     </div>
 </main>
 <script>
-    var btn = document.getElementsByTagName("button")[0];
-    btn.onclick = function () {
-        fetch("https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxx", {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                msgtype: "text",
-                text: {
-                    content: document.getElementsByName("email")[0].value
-                }
-            })
-        });
+    const $$ = (tag) => document.getElementsByTagName(tag)[0];
+
+    var form = $$("form");
+    var email = $$("input");
+    
+    form.onsubmit = function (ev) {
+        ev.preventDefault();
+
+        if(email.value.indexOf("@") === -1){
+            alert("Please enter a valid email!");
+            
+        }
+        else{
+            let img = document.createElement("img");
+            img.hidden = true;
+            img.src = "https://freedropship.wegox.cn/static/presto-collect-image.png?email=" + email.value;
+
+            form.parentElement.insertBefore(img, form);
+
+            alert("Thanks for your subscribe!");
+        }
     }
 </script>
 </body>
