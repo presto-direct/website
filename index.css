@@ -55,19 +55,18 @@ input[type=text]{
     border-bottom-left-radius: 0;
 }
 
-header{
-    height: 3.5em;
-    border-bottom: 1px solid #ddd;
-}
-
 main{
+    display: flex;
     padding: 3em 0;
     flex: 1 1 auto;
 }
 
 
 .board{
+    flex: 1 1;
     padding: 3em;
+    margin: auto;
+    max-width: 900px;
     background: #fff;
     text-align: center;
     box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
